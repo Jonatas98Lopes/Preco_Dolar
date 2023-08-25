@@ -1,6 +1,9 @@
 import os
 import schedule
 from time import sleep
+# Se o usuário clicar em enviar:
+    # Fazemos o processo
+    # Se o 
 
 def rodar_codigo():
     os.system('scrapy crawl dolar')
