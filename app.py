@@ -7,7 +7,7 @@ def rodar_codigo():
 
 print(os.getcwd())
 os.chdir('variacao_dolar')
-
+schedule.every(1).mo
 schedule.every(1).minute.do(rodar_codigo)
 print(str(schedule.next_run ()))
 
