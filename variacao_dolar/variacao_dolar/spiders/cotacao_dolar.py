@@ -51,4 +51,9 @@ class CotacaoDolarSpider(scrapy.Spider):
 
     def parse(self, response):
         mail = Emailer(EMAIL_USER, EMAIL_PASSWORD)
-
+        
+        valor_dolar = response.xpath('//span[@class="text-2xl"]/text()').get()
+        if float(valor_dolar) > 4.15:
+            mensagem = mensagem_original.replace('{valor_atual}', valor_dolar)
+            mail.definir_conteudo('Alteração no valor do dólar', EMAIL_USER, contatos, mensagem) 
+            mail.enviar_email()
