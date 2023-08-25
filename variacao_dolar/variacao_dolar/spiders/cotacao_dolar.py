@@ -1,5 +1,5 @@
 import scrapy
-
+from items import Emailer
 
 
 def remove_caracteres_especiais(lista, caracteres_especiais):
@@ -42,8 +42,13 @@ with open(arquivo_mensagem, 'r', encoding='utf-8') as arquivo:
 class CotacaoDolarSpider(scrapy.Spider):
     name = 'dolar'
 
+
     def start_requests(self):
         urls = ['https://www.investing.com/currencies/usd-brl']
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
+
+
+    def parse(self, response):
+        mail = Emailer(EMAIL_USER, EMAIL_PASSWORD)
 
