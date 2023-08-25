@@ -1,5 +1,5 @@
 import scrapy
-from items import Emailer
+from variacao_dolar.items import Emailer
 
 
 def remove_caracteres_especiais(lista, caracteres_especiais):
@@ -19,14 +19,18 @@ def remove_caracteres_em_elementos_lista(lista, caracteres_especiais):
 
 
 arquivo_crendenciais_acesso = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
-  'Preco-Do_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
+  'Preco_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
   'credenciais_acesso.txt'
 with open(arquivo_crendenciais_acesso, 'r') as arquivo:
-     EMAIL_USER, EMAIL_PASSWORD = arquivo.read().split('\n')
+    print(30 * '#')
+    contatos = arquivo.read().split('\n')
+    EMAIL_USER = contatos[0]
+    EMAIL_PASSWORD = contatos[1]
+
 
 
 arquivo_contatos = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
-    'Preco-Do_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
+    'Preco_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
     'contatos.txt'
 with open(arquivo_contatos, 'r') as arquivo:
     contatos = remove_caracteres_especiais(arquivo.readlines(), ['\n', '\r', '\t'])
@@ -34,7 +38,7 @@ with open(arquivo_contatos, 'r') as arquivo:
 
 
 arquivo_mensagem = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
-     'Preco-Do_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
+     'Preco_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
      'mensagem.html'
 with open(arquivo_mensagem, 'r', encoding='utf-8') as arquivo:
     mensagem_original = arquivo.read()
