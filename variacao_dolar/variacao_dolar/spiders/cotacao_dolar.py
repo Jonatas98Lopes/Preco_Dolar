@@ -1,3 +1,5 @@
+import scrapy
+
 
 
 def remove_caracteres_especiais(lista, caracteres_especiais):
@@ -36,3 +38,12 @@ arquivo_mensagem = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
      'mensagem.html'
 with open(arquivo_mensagem, 'r', encoding='utf-8') as arquivo:
     mensagem_original = arquivo.read()
+
+class CotacaoDolarSpider(scrapy.Spider):
+    name = 'dolar'
+
+    def start_requests(self):
+        urls = ['https://www.investing.com/currencies/usd-brl']
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
