@@ -14,7 +14,7 @@ class DadosUsuario:
             [sg.Text('Quero receber atualizações de preço a cada: ', 
             font=('Helvetica', 14), text_color=('#FFFFFF'))],
 
-            [sg.Radio("Minuto", group_id="intervalo_envio", default=True), sg.Radio("Hora", group_id="intervalo_envio"), sg.Radio("Dia", group_id="intervalo_envio"), sg.Radio("Semana", group_id="intervalo_envio"), sg.Radio("Mês", group_id="intervalo_envio")],
+            [sg.Radio("Minuto", group_id="intervalo_envio", default=True), sg.Radio("Hora", group_id="intervalo_envio"), sg.Radio("Dia", group_id="intervalo_envio"), sg.Radio("Semana", group_id="intervalo_envio")],
 
             [sg.Text('Desejo receber e-mails quando o dólar estiver acima de: ', 
             font=('Helvetica', 14), text_color=('#FFFFFF'))],
@@ -41,8 +41,7 @@ class DadosUsuario:
             0: 'Minuto',
             1: 'Hora',
             2: 'Dia',
-            3: 'Semana',
-            4: 'Mês'
+            3: 'Semana'
         }
         for chave in self.values:
             if chave in (0, 1, 2, 3, 4) and self.values[chave]:
@@ -50,21 +49,17 @@ class DadosUsuario:
  
     def get_valor_moeda(self):
         valor_monitoravel = {
-            5: 3.50,
-            6: 4.00,
-            7: 4.25,
-            8: 4.50,
-            9: 4.75,
-            10: 5.00
+            4: 3.50,
+            5: 4.00,
+            6: 4.25,
+            7: 4.50,
+            8: 4.75,
+            9: 5.00
         }
         for chave in self.values:
             if chave in (5, 6, 7, 8, 9, 10) and self.values[chave]:
                     return valor_monitoravel[chave]
 
     
-
-
-
-
 
 

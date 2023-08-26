@@ -22,7 +22,6 @@ arquivo_crendenciais_acesso = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
   'Preco_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
   'credenciais_acesso.txt'
 with open(arquivo_crendenciais_acesso, 'r') as arquivo:
-    print(30 * '#')
     contatos = arquivo.read().split('\n')
     EMAIL_USER = contatos[0]
     EMAIL_PASSWORD = contatos[1]
@@ -44,7 +43,11 @@ with open(arquivo_mensagem, 'r', encoding='utf-8') as arquivo:
     mensagem_original = arquivo.read()
 
 class CotacaoDolarSpider(scrapy.Spider):
-    name = 'dolar'
+    name = 'dolar'  
+
+    def __init__(self, parametro=None, *args, **kwargs):
+        super(CotacaoDolarSpider, self).__init__(*args, **kwargs)
+        self.parametro = float(parametro)
 
 
     def start_requests(self):
@@ -57,7 +60,8 @@ class CotacaoDolarSpider(scrapy.Spider):
         mail = Emailer(EMAIL_USER, EMAIL_PASSWORD)
         
         valor_dolar = response.xpath('//span[@class="text-2xl"]/text()').get()
-        if float(valor_dolar) > 4.15:
+        if float(valor_dolar) > self.parametro:
+            valor_dolar = valor_dolar.replace('.', ',')
             mensagem = mensagem_original.replace('{valor_atual}', valor_dolar)
             mail.definir_conteudo('Alteração no valor do dólar', EMAIL_USER, contatos, mensagem) 
             mail.enviar_email()

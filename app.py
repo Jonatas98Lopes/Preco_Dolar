@@ -1,19 +1,35 @@
 import os
 import schedule
 from time import sleep
-# Se o usuário clicar em enviar:
-    # Fazemos o processo
-    # Se o 
+from interface_grafica import DadosUsuario
 
-def rodar_codigo():
-    os.system('scrapy crawl dolar')
 
-print(os.getcwd())
-os.chdir('variacao_dolar')
-schedule.every(1).mo
-schedule.every(1).minute.do(rodar_codigo)
-print(str(schedule.next_run ()))
+def rodar_codigo(valor_monitorar):
+    os.system(f'scrapy crawl dolar -a parametro={valor_monitorar}')
 
-while True:
-    schedule.run_pending()
-    sleep(1)
+def wrapper():
+    valor_monitorar = dados_usuario.get_valor_moeda()
+    rodar_codigo(valor_monitorar)
+
+
+
+dados_usuario = DadosUsuario()
+
+if dados_usuario.button == 'Enviar':
+    intervalo_envio = dados_usuario.get_intervalo_envio()
+        
+    if intervalo_envio == 'Minuto':
+        schedule.every(1).minute.do(wrapper)
+    elif intervalo_envio == 'Hora':
+        schedule.every(1).hour.do(wrapper)
+    elif intervalo_envio == 'Dia':
+        schedule.every(1).day.do(wrapper)
+    else:
+        schedule.every(1).week.do(wrapper)
+
+    os.chdir('variacao_dolar')
+    print(str(schedule.next_run()))
+
+    while True:
+        schedule.run_pending()
+        sleep(1)
