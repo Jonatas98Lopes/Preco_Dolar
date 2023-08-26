@@ -32,8 +32,10 @@ arquivo_contatos = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
     'Preco_Dolar\\variacao_dolar\\variacao_dolar\\spiders\\utils\\' \
     'contatos.txt'
 with open(arquivo_contatos, 'r') as arquivo:
-    contatos = remove_caracteres_especiais(arquivo.readlines(), ['\n', '\r', '\t'])
-    contatos = remove_caracteres_em_elementos_lista(contatos, ['\n', '\r', '\t'])
+    contatos = remove_caracteres_especiais(arquivo.readlines(), 
+        ['\n', '\r', '\t'])
+    contatos = remove_caracteres_em_elementos_lista(contatos, 
+        ['\n', '\r', '\t'])
 
 
 arquivo_mensagem = 'C:\\Users\\jonat\\Documents\\GitHub\\' \
@@ -63,5 +65,6 @@ class CotacaoDolarSpider(scrapy.Spider):
         if float(valor_dolar) > self.parametro:
             valor_dolar = valor_dolar.replace('.', ',')
             mensagem = mensagem_original.replace('{valor_atual}', valor_dolar)
-            mail.definir_conteudo('Alteração no valor do dólar', EMAIL_USER, contatos, mensagem) 
+            mail.definir_conteudo('Alteração no valor do dólar', EMAIL_USER, 
+            contatos, mensagem) 
             mail.enviar_email()

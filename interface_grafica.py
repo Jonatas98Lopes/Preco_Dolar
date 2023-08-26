@@ -11,15 +11,23 @@ class DadosUsuario:
 
         layout = [
             
-            [sg.Text('Quero receber atualizações de preço a cada: ', 
+            [sg.Text('Quero receber atualizações de preço a cada:', 
             font=('Helvetica', 14), text_color=('#FFFFFF'))],
 
-            [sg.Radio("Minuto", group_id="intervalo_envio", default=True), sg.Radio("Hora", group_id="intervalo_envio"), sg.Radio("Dia", group_id="intervalo_envio"), sg.Radio("Semana", group_id="intervalo_envio")],
+            [sg.Radio("Minuto", group_id="intervalo_envio", default=True), 
+             sg.Radio("Hora", group_id="intervalo_envio"), 
+             sg.Radio("Dia", group_id="intervalo_envio"), 
+             sg.Radio("Semana", group_id="intervalo_envio")],
 
-            [sg.Text('Desejo receber e-mails quando o dólar estiver acima de: ', 
+            [sg.Text('Desejo receber e-mails quando o dólar estiver acima de:', 
             font=('Helvetica', 14), text_color=('#FFFFFF'))],
 
-            [sg.Radio("R$ 3,50", group_id="valor_moeda", default=True), sg.Radio("R$ 4,00", group_id="valor_moeda"), sg.Radio("R$ 4,25", group_id="valor_moeda"), sg.Radio("R$ 4,50", group_id="valor_moeda"), sg.Radio("R$ 4,75", group_id="valor_moeda"), sg.Radio("R$ 5,00", group_id="valor_moeda") ],
+            [sg.Radio("R$ 3,50", group_id="valor_moeda", default=True), 
+             sg.Radio("R$ 4,00", group_id="valor_moeda"), 
+             sg.Radio("R$ 4,25", group_id="valor_moeda"), 
+             sg.Radio("R$ 4,50", group_id="valor_moeda"), 
+             sg.Radio("R$ 4,75", group_id="valor_moeda"), 
+             sg.Radio("R$ 5,00", group_id="valor_moeda")],
             
             [sg.Button('Enviar', button_color=('white', '#45D669'), 
             font=('Helvetica', 14)), 
