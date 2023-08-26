@@ -12,7 +12,6 @@ def wrapper():
     rodar_codigo(valor_monitorar)
 
 
-
 dados_usuario = DadosUsuario()
 
 if dados_usuario.button == 'Enviar':
